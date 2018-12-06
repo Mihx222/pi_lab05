@@ -76,4 +76,27 @@ print_cursor(mycursor)
 #   Afiseaza suprafata totala a Canadei
 mycursor.execute("select sum(datele.area) from datele")
 print("\nSuprafata totala a Canadei:")
+print_cursor(*mycursor)
+
+
+#   Afiseaza media populatiei capitalelor
+mycursor.execute("select avg(capitalele.population) from capitalele")
+print("\nMedia populatiilor capitalelor")
+print_cursor(*mycursor)
+
+
+#   Afiseaza capitala cu cea mai mica populatie
+mycursor.execute("select min(population) from capitalele")
+print("\nCea mai mica populatie din capitale")
+print_cursor(*mycursor)
+
+#   Afiseaza cea mai mare populatie din provincie
+mycursor.execute("select max(population) from datele")
+print("\nCea mai mare populatie din provincie")
+print_cursor(*mycursor)
+
+#   Afiseaza provinciile care au densitatea in jurul de 0.5
+mycursor.execute("select province, population / area from datele "
+                 "where round(population / area, 1) < 0.5")
+print("\nProvincia cu densitatea in limita 0.5:")
 print_cursor(mycursor)
